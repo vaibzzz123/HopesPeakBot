@@ -4,7 +4,7 @@ import os
 def create_character_list():
     generator = os.walk("./assets/characters/formatted sprites")
     unformatted = [x[0] for x in generator]
-    unformatted.pop(0)
+    unformatted.pop(0) # this is the directory itself, not the subdirectories
     formatted = [path.replace("\\", "/") for path in unformatted]
     return formatted
 
@@ -19,7 +19,7 @@ def paste_portraits(bg):
     characters_length = len(character_list)
     i = 0
 
-    while i < len(character_list):
+    while i < characters_length:
         im = Image.open(character_list[i]+'/alive.png')
         paste_portrait(bg, im, coords)
         if(i == 7):
@@ -33,22 +33,24 @@ def create_title(bg):
     fancy_font = ImageFont.truetype("./assets/fonts/MrGrieves-Regular.otf", size=120)
     bg_width, bg_height = 1920, 1080
     msg = "Killing Game Simulator"
-    pink_color = (255,0,240, 0)
+    pink_color = (255, 0, 240, 0)
     text_width, text_height = draw.textsize(msg, font=fancy_font)
-    draw.text(((bg_width - text_width)/2, 28), msg, fill=pink_color, font=fancy_font, align="center")
+    coords = ((bg_width - text_width)/2, 28)
+    draw.text(coords, msg, fill=pink_color, font=fancy_font, align="center")
 
 def create_chapter_number(bg):
     draw = ImageDraw.Draw(bg)
     fancy_font = ImageFont.truetype("./assets/fonts/MrGrieves-Regular.otf", size=60)
     msg = "Prologue"
-    pink_color = (255,0,240, 0)    
-    draw.text((27, 200), msg, fill=pink_color, font=fancy_font, align="left")
+    pink_color = (255, 0, 240, 0)
+    coords = (27, 200)   
+    draw.text(coords, msg, fill=pink_color, font=fancy_font, align="left")
 
 def generate_image():
     im = Image.open("./assets/background.png").convert("RGBA")
-    paste_portraits(im)
     create_title(im)
     create_chapter_number(im)
+    paste_portraits(im)    
     im.show()
 
 generate_image()
