@@ -31,10 +31,10 @@ def paste_portraits(bg):
 def create_title(bg):
     draw = ImageDraw.Draw(bg)
     fancy_font = ImageFont.truetype("./assets/fonts/MrGrieves-Regular.otf", size=120)
-    bg_width, bg_height = 1920, 1080
+    bg_width = 1920
     msg = "Killing Game Simulator"
     pink_color = (255, 0, 240, 0)
-    text_width, text_height = draw.textsize(msg, font=fancy_font)
+    text_width = draw.textsize(msg, font=fancy_font)
     coords = ((bg_width - text_width)/2, 28)
     draw.text(coords, msg, fill=pink_color, font=fancy_font, align="center")
 
