@@ -26,7 +26,7 @@ def paste_portraits(bg):
             coords = (initial_coords[0], initial_coords[1]+326)
         else:
             coords = (coords[0]+238, coords[1])
-        i += 1        
+        i += 1
 
 def create_title(bg):
     draw = ImageDraw.Draw(bg)
@@ -50,7 +50,7 @@ def generate_image():
     im = Image.open("./assets/background.png").convert("RGBA")
     create_title(im)
     create_chapter_number(im)
-    paste_portraits(im)    
+    paste_portraits(im)
     im.show()
 
 generate_image()
