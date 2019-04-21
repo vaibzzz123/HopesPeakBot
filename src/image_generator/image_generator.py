@@ -11,6 +11,10 @@ def create_character_list():
 def paste_portrait(bg, im, coords):
     bg.paste(im, coords, mask=im)
 
+def paste_arrow(bg, coords):
+    im = Image.open("./assets/red arrow flipped.png")
+    bg.paste(im, coords, mask=im)
+
 def paste_portraits(bg):
     character_list = create_character_list()
     initial_coords = (30, 413)
@@ -34,7 +38,7 @@ def create_title(bg):
     bg_width = 1920
     msg = "Killing Game Simulator"
     pink_color = (255, 0, 240, 0)
-    text_width = draw.textsize(msg, font=fancy_font)
+    text_width = draw.textsize(msg, font=fancy_font)[0]
     coords = ((bg_width - text_width)/2, 28)
     draw.text(coords, msg, fill=pink_color, font=fancy_font, align="center")
 
