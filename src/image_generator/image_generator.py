@@ -7,7 +7,8 @@ def paste_portrait(bg, im, coords):
 def paste_arrow(bg, coords):
     im = Image.open("./assets/red arrow flipped.png")
     width, height = im.size
-    im.thumbnail((64, 64))
+    new_size = (64, 64)
+    im.thumbnail(new_size)
     bg.paste(im, coords, mask=im)
 
 def paste_portraits(bg):
