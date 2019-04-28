@@ -27,8 +27,8 @@ def paste_portraits(bg, characters):
     while i < characters_length:
 
         j = 0
-        tuple_length = len(characters[i])
-        while j < tuple_length:
+        list_length = len(characters[i])
+        while j < list_length:
 
             character = characters[i][j]
             path = os.path.join(root_path, 'assets', 'characters', 'formatted sprites', character.get_first_name(), character.get_status() + ".png")
