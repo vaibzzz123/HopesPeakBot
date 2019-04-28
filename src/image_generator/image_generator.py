@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
-from character import Character, dr1_test
+from character import Character
 
 root_path_raw = Path(__file__).parent.parent.parent
 root_path = str(root_path_raw)
@@ -16,8 +16,7 @@ def paste_arrow(bg, coords):
     im.thumbnail(new_size)
     bg.paste(im, coords, mask=im)
 
-def paste_portraits(bg):
-    characters = dr1_test
+def paste_portraits(bg, characters):
     initial_coords = (30, 413)
     coords = initial_coords
 
@@ -77,11 +76,11 @@ def remove_temporary_image():
     if os.path.exists(path):
         os.remove(path)
 
-def generate_image():
+def generate_image(character_data, chapter):
     path = str(os.path.join(root_path, 'assets', 'background.png'))
     im = Image.open(path).convert("RGBA")
     create_title(im)
-    create_chapter_number(im, "Prologue")
-    paste_portraits(im)
+    create_chapter_number(im, chapter)
+    paste_portraits(im, character_data)
     create_temporary_image(im)
     im.show()

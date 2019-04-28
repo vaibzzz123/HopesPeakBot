@@ -1,0 +1,109 @@
+{
+    "round": "Prologue",
+    "characters": [
+        [
+            {
+                "name": "Leon Kuwata",
+				"status": "dead",
+				"character_type": "killer"
+            },
+            {
+                "name": "Sayaka Maizono",
+				"status": "dead",
+				"character_type": "victim"
+            }
+        ],
+        [
+            {
+                "name": "Mukuro Ikusaba",
+                "status": "dead",
+                "character_type": "victim"
+            }
+        ],
+        [
+            {
+                "name": "Mondo Oowada",
+				"status": "dead",
+				"character_type": "killer"
+            },
+            {
+                "name": "Chihiro Fujisaki",
+				"status": "dead",
+				"character_type": "victim"
+            }
+        ],
+        [
+            {
+                "name": "Celestia Ludenburg",
+				"status": "dead",
+				"character_type": "killer"
+            },
+            {
+                "name": "Hifumi Yamada",
+				"status": "dead",
+				"character_type": "victim"
+            },
+            {
+                "name": "Kiyotaka Ishimaru",
+                "status": "dead",
+                "character_type": "victim"
+            }
+        ],
+        [
+            {
+                "name": "Sakura Oogami",
+				"status": "dead",
+				"character_type": "victim"
+            }
+        ],
+        [
+            {
+                "name": "Junko Enoshima",
+				"status": "dead",
+				"character_type": "victim"
+            }
+        ],
+        [
+            {
+                "name": "Makoto Naegi",
+				"status": "alive",
+				"character_type": "spotless"
+            }
+        ],
+        [
+            {
+                "name": "Kyoko Kirigri",
+				"status": "alive",
+				"character_type": "spotless"
+            }
+        ],
+        [
+            {
+                "name": "Toko Fukawa",
+				"status": "alive",
+				"character_type": "spotless"
+            }
+        ],
+        [
+            {
+                "name": "Byakuya Togami",
+				"status": "alive",
+				"character_type": "spotless"
+            }
+        ],
+        [
+            {
+                "name": "Asahina Aoi",
+				"status": "alive",
+				"character_type": "spotless"
+            }
+        ],
+        [
+            {
+                "name": "Yasuhiro Hagakure",
+				"status": "alive",
+				"character_type": "spotless"
+            }
+        ]
+	]
+}
