@@ -1,3 +1,4 @@
+import os
 from PIL import Image, ImageDraw, ImageFont
 from character import Character, dr1_test
 
@@ -53,18 +54,26 @@ def create_title(bg):
     coords = ((bg_width - text_width)/2, 28)
     draw.text(coords, msg, fill=pink_color, font=fancy_font, align="center")
 
-def create_chapter_number(bg):
+def create_chapter_number(bg, msg):
     draw = ImageDraw.Draw(bg)
     fancy_font = ImageFont.truetype("./assets/fonts/MrGrieves-Regular.otf", size=60)
-    msg = "Prologue"
     pink_color = (255, 0, 240, 255)
     coords = (27, 200)   
     draw.text(coords, msg, fill=pink_color, font=fancy_font, align="left")
 
+def create_temporary_image(im):
+    path = "./current_round.png"
+    im.save(path)
+    return path
+
+def remove_temporary_image(path):
+    if os.path.exists(path):
+        os.remove(path)
+
 def generate_image():
     im = Image.open("./assets/background.png").convert("RGBA")
     create_title(im)
-    create_chapter_number(im)
+    create_chapter_number(im, "Prologue")
     paste_portraits(im)
     im.show()
 
