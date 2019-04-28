@@ -57,15 +57,15 @@ def create_chapter_number(bg, msg):
     draw = ImageDraw.Draw(bg)
     fancy_font = ImageFont.truetype("./assets/fonts/MrGrieves-Regular.otf", size=60)
     pink_color = (255, 0, 240, 255)
-    coords = (27, 200)   
+    coords = (27, 200)
     draw.text(coords, msg, fill=pink_color, font=fancy_font, align="left")
 
 def create_temporary_image(im):
     path = "./current_round.png"
     im.save(path)
-    return path
 
-def remove_temporary_image(path):
+def remove_temporary_image():
+    path = "./current_round.png"
     if os.path.exists(path):
         os.remove(path)
 
