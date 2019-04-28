@@ -1,12 +1,17 @@
 import os
+from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 from character import Character, dr1_test
+
+root_path_raw = Path(__file__).parent.parent.parent
+root_path = str(root_path_raw)
 
 def paste_portrait(bg, im, coords):
     bg.paste(im, coords, mask=im)
 
 def paste_arrow(bg, coords):
-    im = Image.open("./assets/red arrow flipped.png")
+    path = str(os.path.join(root_path, 'assets', 'red arrow flipped.png'))
+    im = Image.open(path)
     new_size = (64, 64)
     im.thumbnail(new_size)
     bg.paste(im, coords, mask=im)
@@ -27,7 +32,8 @@ def paste_portraits(bg):
         while j < tuple_length:
 
             character = characters[i][j]
-            im = Image.open(character.get_character_path())
+            path = os.path.join(root_path, 'assets', 'characters', 'formatted sprites', character.get_first_name(), character.get_status() + ".png")
+            im = Image.open(path)
             paste_portrait(bg, im, coords)
 
             if character.get_character_type() == "killer":
@@ -45,7 +51,8 @@ def paste_portraits(bg):
 
 def create_title(bg):
     draw = ImageDraw.Draw(bg)
-    fancy_font = ImageFont.truetype("./assets/fonts/MrGrieves-Regular.otf", size=120)
+    path = str(os.path.join(root_path, 'assets', 'fonts', 'MrGrieves-Regular.otf'))
+    fancy_font = ImageFont.truetype(path, size=120)
     bg_width = 1920
     msg = "Killing Game Simulator"
     pink_color = (255, 0, 240, 255)
@@ -55,25 +62,25 @@ def create_title(bg):
 
 def create_chapter_number(bg, msg):
     draw = ImageDraw.Draw(bg)
-    fancy_font = ImageFont.truetype("./assets/fonts/MrGrieves-Regular.otf", size=60)
+    path = str(os.path.join(root_path, 'assets', 'fonts', 'MrGrieves-Regular.otf'))
+    fancy_font = ImageFont.truetype(path, size=60)
     pink_color = (255, 0, 240, 255)
     coords = (27, 200)
     draw.text(coords, msg, fill=pink_color, font=fancy_font, align="left")
 
 def create_temporary_image(im):
-    path = "./current_round.png"
+    path = root_path + 'current_round.png'
     im.save(path)
 
 def remove_temporary_image():
-    path = "./current_round.png"
+    path = root_path + 'current_round.png'
     if os.path.exists(path):
         os.remove(path)
 
 def generate_image():
-    im = Image.open("./assets/background.png").convert("RGBA")
+    path = str(os.path.join(root_path, 'assets', 'background.png'))
+    im = Image.open(path).convert("RGBA")
     create_title(im)
     create_chapter_number(im, "Prologue")
     paste_portraits(im)
     im.show()
-
-generate_image()

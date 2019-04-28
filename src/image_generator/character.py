@@ -14,9 +14,6 @@ class Character:
     def get_character_type(self):
         return self.character_type
     
-    def get_character_path(self):
-        return "./assets/characters/formatted sprites/" + self.get_first_name() + "/" + self.get_status() + ".png"
-
 dr1_test = [
     (
         Character("Leon Kuwata", "dead", "killer"),
