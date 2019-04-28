@@ -22,7 +22,9 @@ dr1_test = [
         Character("Leon Kuwata", "dead", "killer"),
         Character("Sayaka Maizono", "dead", "victim"),
     ),
-    Character("Mukuro Ikusaba", "dead", "victim"),
+    (
+        Character("Mukuro Ikusaba", "dead", "victim"),
+    ),
     (
         Character("Mondo Oowada", "dead", "killer"),
         Character("Chihiro Fujisaki", "dead", "victim"),
@@ -32,11 +34,28 @@ dr1_test = [
         Character("Hifumi Yamada", "dead", "victim"),
         Character("Kiyotaka Ishimaru", "dead", "victim"),
     ),
-    Character("Sakura Oogami", "dead", "victim"),
-    Character("Junko Enoshima", "dead", "victim"),
-    Character("Makoto Naegi", "alive", "spotless"),
-    Character("Kyoko Kirigiri", "alive", "spotless"),
-    Character("Toko Fukawa", "alive", "spotless"),
-    Character("Byakuya Togami", "alive", "spotless"),
-    Character("Asahina Aoi", "alive", "spotless"),
+    (
+        Character("Sakura Oogami", "dead", "victim"),
+    ),
+    (
+        Character("Junko Enoshima", "dead", "victim"),
+    ),
+    (
+        Character("Makoto Naegi", "alive", "spotless"),
+    ),
+    (
+        Character("Kyoko Kirigiri", "alive", "spotless"),
+    ),
+    (
+        Character("Toko Fukawa", "alive", "spotless"),
+    ),
+    (
+        Character("Byakuya Togami", "alive", "spotless"),
+    ),
+    (
+        Character("Asahina Aoi", "alive", "spotless"),
+    ),
+    (
+        Character("Yasuhiro Hagakure", "alive", "spotless"),
+    )
 ]

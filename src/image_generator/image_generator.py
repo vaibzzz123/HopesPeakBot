@@ -6,6 +6,8 @@ def paste_portrait(bg, im, coords):
 
 def paste_arrow(bg, coords):
     im = Image.open("./assets/red arrow flipped.png")
+    width, height = im.size
+    im.thumbnail((64, 64))
     bg.paste(im, coords, mask=im)
 
 def paste_portraits(bg):
@@ -18,32 +20,27 @@ def paste_portraits(bg):
     portrait_number = 0
 
     while i < characters_length:
-        
-        if(isinstance(characters[i], tuple)):
-            j = 0
-            tuple_length = len(characters[i])
-            while j < tuple_length:
 
-                character = characters[i][j]
-                im = Image.open(character.get_character_path())
-                paste_portrait(bg, im, coords)
+        j = 0
+        tuple_length = len(characters[i])
+        while j < tuple_length:
 
-                # if character.get_character_type == "killer":
-                    # paste_arrow(bg, coords)
+            character = characters[i][j]
+            im = Image.open(character.get_character_path())
+            paste_portrait(bg, im, coords)
+
+            if character.get_character_type() == "killer":
+                arrow_coords = (coords[0]+186, coords[1]+52)
+                paste_arrow(bg, arrow_coords)
                 
-                if(portrait_number == 7):
-                    coords = (initial_coords[0], initial_coords[1]+326)
-                else:
-                    coords = (coords[0]+238, coords[1])
-                j += 1
-                portrait_number += 1
-
-        if(portrait_number == 7):
-            coords = (initial_coords[0], initial_coords[1]+326)
-        else:
-            coords = (coords[0]+238, coords[1])
+            if(portrait_number == 7):
+                coords = (initial_coords[0], initial_coords[1]+326) 
+            else:
+                coords = (coords[0]+238, coords[1])
+            j += 1
+            portrait_number += 1
+        
         i += 1
-        portrait_number += 1
 
 def create_title(bg):
     draw = ImageDraw.Draw(bg)
