@@ -69,11 +69,11 @@ def create_chapter_number(bg, msg):
     draw.text(coords, msg, fill=pink_color, font=fancy_font, align="left")
 
 def create_temporary_image(im):
-    path = os.path.join(root_path + 'current_round.png')
+    path = os.path.join(root_path, 'current_round.png')
     im.save(path)
 
 def remove_temporary_image():
-    path = os.path.join(root_path + 'current_round.png')
+    path = os.path.join(root_path, 'current_round.png')
     if os.path.exists(path):
         os.remove(path)
 
