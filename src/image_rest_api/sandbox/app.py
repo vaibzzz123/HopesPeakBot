@@ -5,7 +5,6 @@ import sys, os
 src_path = Path(__file__).parent.parent.parent
 image_generator_folder = os.path.join(src_path, 'image_generator')
 sys.path.append(image_generator_folder)
-print(sys.path)
 from image_generator import generate_image
 
 app = Flask(__name__)
