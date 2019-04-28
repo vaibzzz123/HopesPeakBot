@@ -5,7 +5,7 @@ import sys, os
 src_path = Path(__file__).parent.parent.parent
 image_generator_folder = os.path.join(src_path, 'image_generator')
 sys.path.append(image_generator_folder)
-from image_generator import generate_image
+from image_generator import generate_image, remove_temporary_image
 
 app = Flask(__name__)
 
@@ -19,6 +19,7 @@ def index():
     else:
         return 'error, not json'
   
-@app.route('/delete_image', methods=['DELETE'])
-def delete_message():
-    return 'deleted image'
+@app.route('/remove_image', methods=['DELETE'])
+def remove_message():
+    remove_temporary_image()
+    return 'removed image'
