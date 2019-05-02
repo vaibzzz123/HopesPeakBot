@@ -20,6 +20,10 @@ def process_character_json(character_data):
         parsed_data.append(parsed_array)
     return parsed_data
 
+@app.route('/', methods=['GET'])
+def basic_response():
+        return 'hooray!'
+
 @app.route('/generate_image', methods=['POST'])
 def index():
     if request.is_json:

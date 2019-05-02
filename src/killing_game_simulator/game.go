@@ -17,7 +17,7 @@ func initializeGame() GameState {
 		CurrentRound:     startingRound,
 		Mastermind:       mastermind,
 		PlayersRemaining: characters,
-		PreviousRounds:   nil,
+		AllRounds:        nil,
 	}
 }
 
@@ -122,7 +122,7 @@ func doRound(state GameState) GameState {
 			state.PlayersRemaining = append(state.PlayersRemaining[:victimTwoIndex], state.PlayersRemaining[victimTwoIndex+1:]...)
 			state.CurrentRound.VictimTwo = victimTwo
 		}
-		state.PreviousRounds = append(state.PreviousRounds, state.CurrentRound)
+		state.AllRounds = append(state.AllRounds, state.CurrentRound)
 	}
 	if strings.Contains(state.CurrentRound.RoundName, "Class Trial") {
 		murderer, _ := chooseCharacter(&state.PlayersRemaining)
@@ -139,8 +139,8 @@ func doRound(state GameState) GameState {
 			// fmt.Println("murderer:", state.CurrentRound.Murderer.Name) //shows up empty
 			state.PlayersRemaining = append(state.PlayersRemaining[:index], state.PlayersRemaining[index+1:]...)
 		}
-		length := len(state.PreviousRounds)
-		state.PreviousRounds[length-1] = state.CurrentRound // overwriting last round, as we're sending previous rounds to API
+		length := len(state.AllRounds)
+		state.AllRounds[length-1] = state.CurrentRound // overwriting last round, as we're sending previous rounds to API
 	}
 	if strings.Contains(state.CurrentRound.RoundName, "Finale") {
 		murderer := state.Mastermind
@@ -153,8 +153,8 @@ func doRound(state GameState) GameState {
 			// fmt.Println("murderer:", state.CurrentRound.Murderer.Name) //shows up empty
 			// state.PlayersRemaining = append(state.PlayersRemaining[:index], state.PlayersRemaining[index+1:]...)
 		}
-		length := len(state.PreviousRounds)
-		state.PreviousRounds[length-1] = state.CurrentRound // overwriting last round, as we're sending previous rounds to API
+		length := len(state.AllRounds)
+		state.AllRounds[length-1] = state.CurrentRound // overwriting last round, as we're sending previous rounds to API
 	}
 
 	return state
@@ -162,17 +162,24 @@ func doRound(state GameState) GameState {
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
+	//initialize game
 	state := initializeGame()
 	for scanner.Scan() {
-		//initialize game
-
 		//do round
 		state = doRound(state)
 
 		//print info about round
 		fmt.Println(getRoundDescription(state))
 
-		//post round data to fb
+		//generate image for current state
+		sendGenerateImageRequest(state)
+
+		//open image file created
+
+		//send image and state data to fb API
+
+		//if response is successful, delete image
+		// sendDeleteImageRequest()
 
 		//go to next round
 		state = incrementRound(state)
