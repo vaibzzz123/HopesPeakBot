@@ -65,6 +65,20 @@
             "request": "launch",
             "program": "${file}",
             "console": "externalTerminal"
+        },
+        {
+            "name": "Go Launch",
+            "type": "go",
+            "request": "launch",
+            "mode": "remote",
+            "remotePath": "",
+            "port": 2345,
+            "host": "127.0.0.1",
+            "program": "${fileDirname}",
+            "apiVersion": 1,
+            "env": {},
+            "args": [],
+            "showLog": false
         }
     ]
 }
