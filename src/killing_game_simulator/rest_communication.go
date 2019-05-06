@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -19,12 +20,11 @@ func processJSON(data GenerateImage) []byte {
 }
 
 func sendGenerateImageRequest(state GameState) (*http.Response, error) {
-	// generateImageStruct := GenerateImage{PlayersRemaining: state.PlayersRemaining, AllRounds: state.AllRounds}
-	// generateImageJSON := processJSON(generateImageStruct)
-	// fmt.Println(string(generateImageJSON))
+	newPlayersRemaining := insertMastermind(state.PlayersRemaining, state.Mastermind)
+	generateImageStruct := GenerateImage{PlayersRemaining: newPlayersRemaining, AllRounds: state.AllRounds}
+	generateImageJSON := processJSON(generateImageStruct)
 
-	// resp, err := http.Post("http://127.0.0.1:5000/generate-image", "application/json", bytes.NewBuffer(generateImageJSON))
-	resp, err := http.Get("http://127.0.0.1:5000/")
+	resp, err := http.Post("http://127.0.0.1:5000/generate_image", "application/json", bytes.NewBuffer(generateImageJSON))
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -35,9 +35,5 @@ func sendGenerateImageRequest(state GameState) (*http.Response, error) {
 }
 
 func sendDeleteImageRequest() {
-	// req, err := http.NewRequest("DELETE", "127.0.0.1:5000/remove_image", nil)
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// }
-	// return req, err
+
 }

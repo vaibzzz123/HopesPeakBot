@@ -83,4 +83,4 @@ def generate_image(character_data, chapter):
     create_chapter_number(im, chapter)
     paste_portraits(im, character_data)
     create_temporary_image(im)
-    im.show()
+    # im.show()

@@ -21,11 +21,33 @@ func initializeGame() GameState {
 	}
 }
 
+// Weird hacky workaround for adding the mastermind to the data sent to API, randomly choosing insertion index
+func insertMastermind(playersRemaining []Character, mastermind Character) []Character {
+	mastermindIncluded := false
+	for _, player := range playersRemaining {
+		if player.Name == mastermind.Name {
+			mastermindIncluded = true
+			break
+		}
+	}
+	if !mastermindIncluded {
+		index := rand.Intn(len(playersRemaining))
+		// playersRemaining = append(playersRemaining, Character{})
+		// temp := append([]int{array2[2]}, array1[1:]...)
+		// copy(playersRemaining[index+1:], playersRemaining[index:])
+		// playersRemaining[index] = mastermind
+		playersRemaining = append(playersRemaining[:index], append([]Character{mastermind}, playersRemaining[index:]...)...)
+	}
+
+	return playersRemaining
+
+}
+
 func getRoundDescription(state GameState) string {
 	round := state.CurrentRound
 	if round.RoundName == "Prologue" {
 		return "Let the killing games begin!"
-	} else if strings.Contains(round.RoundName, "School Life") { // update to account for chapter 3 double murder
+	} else if strings.Contains(round.RoundName, "School Life") {
 		if strings.Contains(round.RoundName, "Chapter 6") {
 			return "On to the final trial! Who will win, the survivors or the mastermind?"
 		} else if strings.Contains(round.RoundName, "Chapter 3") {
@@ -51,17 +73,16 @@ func getRoundDescription(state GameState) string {
 
 func chooseCharacter(characters *[]Character) (Character, int) {
 	index := rand.Intn(len(*characters))
-	// fmt.Println("index in choose char is", index)
 	character := CharacterList[index]
 	return character, index
 }
 
 func chooseCauseOfDeath() string {
-	return "bludgeoning"
+	return "bludgeoning" // TODO add a bunch of causes of death
 }
 
 func doesMurdererWin() bool {
-	return false
+	return false // TODO make this be a probability based off the round the user is on
 }
 
 func isSamePlayer(one, two Character) bool {
@@ -81,7 +102,6 @@ func chooseNextRoundName(currentRoundName string) string {
 	length := len(RoundNames)
 	for index, roundName := range RoundNames {
 		if roundName == currentRoundName && index != length-1 {
-			// fmt.Println("next round is", RoundNames[index+1])
 			return RoundNames[index+1]
 		}
 	}
@@ -96,7 +116,6 @@ func incrementRound(state GameState) GameState {
 		state.CurrentRound.Murderer, state.CurrentRound.VictimOne, state.CurrentRound.VictimTwo, state.CurrentRound.MurdererWins = Character{}, Character{}, Character{}, false
 	}
 	state.CurrentRound.RoundName = chooseNextRoundName(state.CurrentRound.RoundName)
-	// fmt.Println("roundName is", state.CurrentRound.RoundName)
 	return state
 }
 

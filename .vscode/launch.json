@@ -60,6 +60,21 @@
             "jinja": true
         },
         {
+            "name": "Custom Flask debug",
+            "type": "python",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "src\\image_rest_api\\sandbox\\app.py"
+            },
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload"
+            ],
+            "jinja": true
+        },
+        {
             "name": "Python: Current File (External Terminal)",
             "type": "python",
             "request": "launch",
