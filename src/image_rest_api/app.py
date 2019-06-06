@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify
 from pathlib import Path
 import sys, os
 
-root_path = Path(__file__).parent.parent.parent.parent
+root_path = Path(__file__).parent.parent.parent
+print(str(root_path))
 image_generator_folder = os.path.join(root_path, 'src', 'image_generator')
 sys.path.append(image_generator_folder)
 from image_generator import generate_image, remove_temporary_image

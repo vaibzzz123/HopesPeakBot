@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+src/image_generator/__pycache__/*
 *.py[cod]
 *$py.class
 
@@ -125,7 +126,9 @@ dmypy.json
 # executables
 
 *.exe
+src/killing_game_simulator/killing_game_simulator
 
 # other
 
 src/.vscode/
+current_round.png

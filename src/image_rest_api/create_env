@@ -1,0 +1,5 @@
+if [ ! -d "./venv/" ]
+then
+  virtualenv venv
+fi
+chmod +x ./venv/bin/activate
