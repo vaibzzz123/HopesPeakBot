@@ -125,3 +125,7 @@ dmypy.json
 # executables
 
 *.exe
+
+# other
+
+src/.vscode/
